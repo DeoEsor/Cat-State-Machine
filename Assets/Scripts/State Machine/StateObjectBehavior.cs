@@ -1,33 +1,37 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace State_Machine
 {
+    [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
     public class StateObjectBehavior : MonoBehaviour, IStateObject
     {
-        public IState StateMachine { get; set; }
-        public IStateChangeLogic StateChangeLogic { get; }
+        public IStateMachine StateMachine { get; }
         
-        public Animator Animator { get; }
+        public Animator Animator { get; set; }
+        
+        public NavMeshAgent NavMeshAgent { get; set; }
 
         protected virtual void Awake()
         {
-            throw new NotImplementedException();
+            NavMeshAgent = GetComponent<NavMeshAgent>();
+            Animator = GetComponent<Animator>();
         }
 
         protected virtual void Start()
         {
-            throw new NotImplementedException();
+            
         }
 
         protected virtual void Update()
         {
-            StateMachine.LogicUpdate()
+            StateMachine.State
+                .LogicUpdate()
                 .HandleInput();
             
-            StateChangeLogic.CheckAndChangeState(this);
+            StateMachine.CheckAndChangeState(this);
         }
 
-        protected void LateUpdate() => StateMachine.PhysicsUpdate();
+        protected virtual void LateUpdate() => StateMachine.State.PhysicsUpdate();
     }
 }

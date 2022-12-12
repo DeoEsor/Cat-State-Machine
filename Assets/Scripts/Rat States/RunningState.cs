@@ -1,5 +1,4 @@
-﻿using Cat_States;
-using State_Machine;
+﻿using State_Machine;
 
 namespace Rat_States
 {

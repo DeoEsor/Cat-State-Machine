@@ -6,26 +6,51 @@ namespace Cat_States
 {
     public class PatrolState : CatState
     {
-        private List<Transform> PatrolPoints = new List<Transform>();
+        private int destPoint = 0; 
         
+        private readonly List<Transform> PatrolPoints;
+
+        public PatrolState(StateObjectBehavior stateObjectBehavior, int layerMask, List<Transform> patrolPoints) 
+            : base(stateObjectBehavior, layerMask)
+        {
+            PatrolPoints = patrolPoints;
+            StateObject.NavMeshAgent.autoBraking = false;
+        }
+
         public override void Enter()
         {
-            throw new System.NotImplementedException();
+            StateObject.NavMeshAgent.isStopped = false;
         }
 
         public override IState LogicUpdate()
         {
-            throw new System.NotImplementedException();
+            if (!StateObject.NavMeshAgent.pathPending && StateObject.NavMeshAgent.remainingDistance < 0.5f)
+                GotoNextPoint();
+
+            return this;
         }
 
         public override IState PhysicsUpdate()
         {
-            throw new System.NotImplementedException();
+            if (CheckMouseAround()) ;
+            //StateObject.StateMachine.Trigger
+            return this;
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            StateObject.NavMeshAgent.isStopped = true;
         }
+
+        private void GotoNextPoint() 
+        {
+            if (PatrolPoints.Count == 0)
+                return;
+
+            StateObject.NavMeshAgent.destination = PatrolPoints[destPoint].position;
+            
+            destPoint = (destPoint + 1) % PatrolPoints.Count;
+        }
+
     }
 }

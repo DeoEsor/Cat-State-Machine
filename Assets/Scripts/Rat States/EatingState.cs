@@ -28,5 +28,9 @@ namespace Rat_States
         {
             throw new System.NotImplementedException();
         }
+
+        public EatingState(StateObjectBehavior stateObject) : base(stateObject)
+        {
+        }
     }
 } 

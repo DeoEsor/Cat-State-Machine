@@ -9,5 +9,10 @@ namespace Cat_States
         {
             throw new NotImplementedException();
         }
+
+        public override void OnTriggered(string triggerKey)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace State_Machine
+﻿using System;
+
+namespace State_Machine
 {
     public interface IStateMachine
     {
@@ -7,5 +9,7 @@
         IStateMachine Initialize(IState state);
         
         void CheckAndChangeState(StateObjectBehavior stateObject);
+
+        public void OnTriggered(string triggerKey);
     }
 }

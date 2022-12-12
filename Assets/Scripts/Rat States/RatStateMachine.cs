@@ -8,5 +8,10 @@ namespace Rat_States
         {
             throw new System.NotImplementedException();
         }
+
+        public override void OnTriggered(string triggerKey)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

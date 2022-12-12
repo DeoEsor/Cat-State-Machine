@@ -1,3 +1,5 @@
+using System;
+
 namespace State_Machine
 {
     public abstract class StateMachine : IStateMachine
@@ -18,5 +20,6 @@ namespace State_Machine
 
         public abstract void CheckAndChangeState(StateObjectBehavior stateObject);
 
+        public abstract void OnTriggered(string triggerKey);
     }
 }

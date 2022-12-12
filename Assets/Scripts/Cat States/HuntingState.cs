@@ -23,5 +23,9 @@ namespace Cat_States
         {
             throw new System.NotImplementedException();
         }
+
+        public HuntingState(StateObjectBehavior stateObjectBehavior, int layerMask) : base(stateObjectBehavior, layerMask)
+        {
+        }
     }
 }

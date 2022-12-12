@@ -44,5 +44,9 @@ namespace Cat_States
         {
             StateObject.Animator.SetBool(StateName, false);
         }
+
+        public SleepState(StateObjectBehavior stateObjectBehavior, int layerMask) : base(stateObjectBehavior, layerMask)
+        {
+        }
     }
 }

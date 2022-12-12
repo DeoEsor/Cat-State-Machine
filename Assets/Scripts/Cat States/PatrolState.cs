@@ -1,9 +1,13 @@
-﻿using State_Machine;
+﻿using System.Collections.Generic;
+using State_Machine;
+using UnityEngine;
 
 namespace Cat_States
 {
     public class PatrolState : CatState
     {
+        private List<Transform> PatrolPoints = new List<Transform>();
+        
         public override void Enter()
         {
             throw new System.NotImplementedException();

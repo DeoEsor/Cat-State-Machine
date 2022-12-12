@@ -10,19 +10,20 @@ namespace Cat_States
         private static readonly int StateName = Animator.StringToHash("sleep_state");
         public LayerMask layerMask;
 
-        private string[] ideas = new[] { "Mouse", "Milk", "Cat" };
+        private string[] ideas = { "Mouse", "Milk", "Cat" };
 
         public override void Enter()
         {
             text.enabled = true;
             StateObject.Animator.SetBool(StateName, true);
+            
         }
 
         public override IState LogicUpdate()
         {
 #if DEBUG
             Debug.Log($"Cat: thinking about {ideas[Random.Range(0, ideas.Length)]}");
-            Debug.Log($"Cat is sleeping");      
+            Debug.Log($"Cat is sleeping");
 #endif
             
             return this;
@@ -30,7 +31,12 @@ namespace Cat_States
 
         public override IState PhysicsUpdate()
         {
-            Physics.CheckBox(StateObject.transform.position, Vector3.one, Quaternion.identity, layerMask);
+            Physics.CheckBox(
+                StateObject.transform.position, 
+                Vector3.one, 
+                Quaternion.identity, 
+                layerMask);
+            
             return this;
         }
 

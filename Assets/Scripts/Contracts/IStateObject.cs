@@ -1,4 +1,4 @@
-﻿namespace State_Machine
+﻿namespace Contracts
 {
     public interface IStateObject
     {   

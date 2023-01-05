@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Contracts;
 
 namespace State_Machine
 {
@@ -9,17 +11,22 @@ namespace State_Machine
         public IState State { get; set; }
         
         public StateObjectBehavior StateObject { get; set; }
+        
+        public Dictionary<string, IState> States { get; set; }
+
+        protected StateMachine(StateObjectBehavior stateObjectBehavior)
+        {
+            StateObject = stateObjectBehavior;
+        }
 
         public IStateMachine Initialize(IState state)
         {
-            State.Exit();
+            State?.Exit();
             State = state;
             State.Enter();
             return this;
         }
 
-        public abstract void CheckAndChangeState(StateObjectBehavior stateObject);
-
-        public abstract void OnTriggered(string triggerKey);
+        public abstract void CheckAndChangeState();
     }
 }

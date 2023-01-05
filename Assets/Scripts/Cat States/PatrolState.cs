@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Contracts;
 using State_Machine;
 using UnityEngine;
 
@@ -6,12 +7,12 @@ namespace Cat_States
 {
     public class PatrolState : CatState
     {
-        private int destPoint = 0; 
+        private int destPoint; 
         
         private readonly List<Transform> PatrolPoints;
 
-        public PatrolState(StateObjectBehavior stateObjectBehavior, int layerMask, List<Transform> patrolPoints) 
-            : base(stateObjectBehavior, layerMask)
+        public PatrolState(StateObjectBehavior stateObjectBehavior, List<Transform> patrolPoints) 
+            : base(stateObjectBehavior)
         {
             PatrolPoints = patrolPoints;
             StateObject.NavMeshAgent.autoBraking = false;
@@ -19,6 +20,10 @@ namespace Cat_States
 
         public override void Enter()
         {
+            SetStatus($"Cat is started a patrol");
+#if DEBUG
+            Debug.Log($"Cat is started a patrol");
+#endif
             StateObject.NavMeshAgent.isStopped = false;
         }
 
@@ -32,14 +37,16 @@ namespace Cat_States
 
         public override IState PhysicsUpdate()
         {
-            if (CheckMouseAround()) ;
-            //StateObject.StateMachine.Trigger
             return this;
         }
 
         public override void Exit()
         {
             StateObject.NavMeshAgent.isStopped = true;
+            
+#if DEBUG
+            Debug.Log($"Cat is stopped a patrolling");
+#endif
         }
 
         private void GotoNextPoint() 

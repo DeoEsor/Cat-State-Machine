@@ -1,35 +1,40 @@
 ﻿using Contracts;
 using State_Machine;
+using Random = UnityEngine.Random;
 
 namespace Rat_States
 {
     public class SearchCheeseState 
         : RatState
     {
-        public RunningState(StateObjectBehavior stateObject) 
+        public SearchCheeseState(StateObjectBehavior stateObject) 
             : base(stateObject)
         { }
         
         public override void Enter()
         {
-            SetStatus($"Rat is started eating");
+            SetStatus($"Started search a cheese");
+            StateObject.NavMeshAgent.destination = SceneData.Instance.cheese.transform.position;
+            StateObject.NavMeshAgent.isStopped = false;
+            base.Enter();
         }
 
         public override IState LogicUpdate()
         {
-            SetStatus($"Rat is started eating");
+            SetStatus($"Searching" + new string('.',Random.Range(0,3)));
             return this;
         }
 
         public override IState PhysicsUpdate()
         {
             SetStatus($"Rat is started eating");
-            return this;
+            return base.PhysicsUpdate();
         }
 
         public override void Exit()
         {
             SetStatus($"Rat is started eating");
+            StateObject.NavMeshAgent.isStopped = true;
         }
     }
 }

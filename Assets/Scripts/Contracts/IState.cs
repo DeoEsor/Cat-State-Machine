@@ -1,4 +1,6 @@
-﻿namespace State_Machine
+﻿using State_Machine;
+
+namespace Contracts
 {
     public interface IState
     {

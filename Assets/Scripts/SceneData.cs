@@ -13,15 +13,11 @@ public class SceneData : MonoBehaviour
 
     public static SceneData Instance { get; set; }
 
-    public LayerMask layerMask;
-
     public List<Transform> patrolPoints;
-    
-    public List<Transform> holes;
-    
-    public Transform cheese;
 
-    public StateObjectBehavior Cat;
+    public StateObjectBehavior Fly;
 
-    public StateObjectBehavior Rat;
+    public GameObject Player;
+
+    public Transform EatPlace;
 }

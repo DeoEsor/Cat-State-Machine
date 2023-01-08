@@ -171,8 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caff994675424b08bef084153d5f1824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RollingScale: 1
   IsRolling: 0
-  model: {fileID: 0}
+  model: {fileID: 926138416}
 --- !u!1 &113941063
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,8 +782,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caff994675424b08bef084153d5f1824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RollingScale: 1
   IsRolling: 0
-  model: {fileID: 0}
+  model: {fileID: 712182867}
 --- !u!1 &654801652
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,10 +858,6 @@ MonoBehaviour:
   Balls:
   - {fileID: 575630396}
   - {fileID: 92696627}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   CurrentBall: {fileID: 0}
 --- !u!4 &705846891
 Transform:
@@ -876,6 +874,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &712182867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 153437049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &717383575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1350,6 +1354,12 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
+--- !u!1 &926138416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 501905270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &981133686
 GameObject:
   m_ObjectHideFlags: 0

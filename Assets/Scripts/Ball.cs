@@ -15,6 +15,7 @@ namespace DefaultNamespace
             RollingScale += Time.deltaTime;
             RollingScale = Mathf.Clamp(RollingScale, 1, 18);
             model.transform.localScale = Vector3.one * (RollingScale * 0.1f + 0.2f);
+            model.transform.RotateAround(transform.position, 1);
         }
     }
 }

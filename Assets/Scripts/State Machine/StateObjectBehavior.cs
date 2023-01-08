@@ -16,9 +16,7 @@ namespace State_Machine
         public NavMeshAgent NavMeshAgent { get; set; }
 
         public TMP_Text text;
-
-        public StateMachineType Type;
-
+        
         private void Awake()
         {
             NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -27,19 +25,8 @@ namespace State_Machine
 
         private void Start()
         {
-            switch (Type)
-            {
-                case StateMachineType.Cat:
-                    StateMachine = new CatStateMachine(SceneData.Instance.layerMask, this);
-                    StateMachine.Initialize(StateMachine.States["Patrol"]);
-                    break;
-                case StateMachineType.Rat:
-                    StateMachine = new RatStateMachine(this);
-                    StateMachine.Initialize(StateMachine.States["Search Cheese"]);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            StateMachine = new HerculesStateMachine(this);
+            StateMachine.Initialize(StateMachine.States["Search Ball"]);
         }
 
         private void Update()

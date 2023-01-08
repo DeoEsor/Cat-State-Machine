@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DefaultNamespace;
 using State_Machine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,15 +14,11 @@ public class SceneData : MonoBehaviour
 
     public static SceneData Instance { get; set; }
 
-    public LayerMask layerMask;
+    public Transform Home;
 
-    public List<Transform> patrolPoints;
-    
-    public List<Transform> holes;
-    
-    public Transform cheese;
+    public StateObjectBehavior Hercules;
 
-    public StateObjectBehavior Cat;
+    public List<Ball> Balls;
 
-    public StateObjectBehavior Rat;
+    public Ball CurrentBall;
 }

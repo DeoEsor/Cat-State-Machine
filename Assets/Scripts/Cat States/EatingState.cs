@@ -13,6 +13,7 @@ namespace Cat_States
         
         public override void Enter()
         {
+            timeSpandInState = 0;
             SetStatus("Cat is started eating");
 #if DEBUG
             Debug.Log($"Cat is started eating");
@@ -22,11 +23,6 @@ namespace Cat_States
         public override IState LogicUpdate()
         {
             SetStatus("Cat is eating");
-            return this;
-        }
-
-        public override IState PhysicsUpdate()
-        {
             return this;
         }
 

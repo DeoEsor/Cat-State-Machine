@@ -18,8 +18,12 @@ public class SceneData : MonoBehaviour
     public List<Transform> patrolPoints;
     
     public List<Transform> holes;
+
+    public Transform currentHole;
     
     public Transform cheese;
+    
+    public Transform ratSpawn;
 
     public StateObjectBehavior Cat;
 

@@ -35,11 +35,6 @@ namespace Cat_States
             return this;
         }
 
-        public override IState PhysicsUpdate()
-        {
-            return this;
-        }
-
         public override void Exit()
         {
             StateObject.NavMeshAgent.isStopped = true;

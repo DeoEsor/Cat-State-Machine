@@ -34,11 +34,6 @@ namespace Cat_States
             return this;
         }
 
-        public override IState PhysicsUpdate()
-        {
-            return this;
-        }
-
         public override void Exit()
         {
             StateObject.Animator.SetBool(StateName, false);

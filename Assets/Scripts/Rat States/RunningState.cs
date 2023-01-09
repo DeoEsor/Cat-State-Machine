@@ -15,7 +15,8 @@ namespace Rat_States
         {
             SetStatus($"Rat is started running");
             StateObject.NavMeshAgent.speed = 7;
-            StateObject.NavMeshAgent.destination = SceneData.Instance.holes[Random.Range(0, SceneData.Instance.holes.Count)].position;
+            SceneData.Instance.currentHole = SceneData.Instance.holes[Random.Range(0, SceneData.Instance.holes.Count)];
+            StateObject.NavMeshAgent.destination = SceneData.Instance.currentHole.position;
             StateObject.NavMeshAgent.isStopped = false;
             base.Enter();
         }

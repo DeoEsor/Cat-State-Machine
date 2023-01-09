@@ -33,6 +33,10 @@ namespace State_Machine
         public void TakeDamage()
         {
             Initialize(States["Death"]);
+            
+            var rat = SceneData.Instance.Rat;
+            
+            rat.ResetPosition();
         }
 
 
@@ -67,6 +71,11 @@ namespace State_Machine
 
         private void RunningStateTransforms(StateObjectBehavior cat, StateObjectBehavior rat, RunningState runningState)
         {
+            if (Vector3.Distance(SceneData.Instance.currentHole.position, rat.transform.position) < 1f)
+            {
+                rat.StateMachine.Initialize(rat.StateMachine.States["Sleep"]);
+                rat.transform.position = SceneData.Instance.ratSpawn.position;
+            }
         }
         
         private void SleepStateTransforms(StateObjectBehavior cat, StateObjectBehavior rat, SleepState sleepState)

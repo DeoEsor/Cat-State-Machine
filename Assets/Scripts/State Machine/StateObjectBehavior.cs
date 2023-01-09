@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Contracts;
 using TMPro;
 using UnityEngine;
@@ -54,6 +55,20 @@ namespace State_Machine
         private void LateUpdate()
         {
             StateMachine.State.PhysicsUpdate();
+        }
+
+        public void ResetPosition()
+        {
+            StartCoroutine(SpawnDelay());
+        }
+
+        private IEnumerator SpawnDelay()
+        {
+            yield return new WaitForSeconds(2);
+            var rat = SceneData.Instance.Rat;
+            
+            rat.StateMachine.Initialize(rat.StateMachine.States["Sleep"]);
+            rat.transform.position = SceneData.Instance.ratSpawn.position;
         }
     }
 }

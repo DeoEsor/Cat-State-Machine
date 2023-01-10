@@ -2,19 +2,19 @@
 using State_Machine;
 using Random = UnityEngine.Random;
 
-namespace Rat_States
+namespace MonsterStates
 {
-    public class SearchCheeseState 
-        : RatState
+    public class SearchPlayerState 
+        : MonsterState
     {
-        public SearchCheeseState(StateObjectBehavior stateObject) 
+        public SearchPlayerState(StateObjectBehavior stateObject) 
             : base(stateObject)
         { }
         
         public override void Enter()
         {
-            SetStatus($"Started search a cheese");
-            StateObject.NavMeshAgent.destination = SceneData.Instance.cheese.transform.position;
+            StateObject.NavMeshAgent.destination = SceneData.Instance.player.transform.position;
+            StateObject.NavMeshAgent.speed = 2;
             StateObject.NavMeshAgent.isStopped = false;
             base.Enter();
         }
@@ -22,18 +22,13 @@ namespace Rat_States
         public override IState LogicUpdate()
         {
             SetStatus($"Searching" + new string('.',Random.Range(0,3)));
+            StateObject.NavMeshAgent.destination = SceneData.Instance.player.transform.position;
             return this;
-        }
-
-        public override IState PhysicsUpdate()
-        {
-            SetStatus($"Rat is started eating");
-            return base.PhysicsUpdate();
         }
 
         public override void Exit()
         {
-            SetStatus($"Rat is started eating");
+            StateObject.NavMeshAgent.speed = 3;
             StateObject.NavMeshAgent.isStopped = true;
         }
     }

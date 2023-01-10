@@ -2,10 +2,9 @@
 using State_Machine;
 using UnityEngine;
 
-namespace Rat_States
+namespace MonsterStates
 {
-    public class RunningState 
-        : RatState
+    public class RunningState : MonsterState
     {
         public RunningState(StateObjectBehavior stateObject) 
             : base(stateObject)
@@ -13,25 +12,22 @@ namespace Rat_States
         
         public override void Enter()
         {
-            SetStatus($"Rat is started running");
-            StateObject.NavMeshAgent.speed = 7;
-            SceneData.Instance.currentHole = SceneData.Instance.holes[Random.Range(0, SceneData.Instance.holes.Count)];
-            StateObject.NavMeshAgent.destination = SceneData.Instance.currentHole.position;
+            SetStatus($"Monster is running");
+            StateObject.NavMeshAgent.speed = 5;
+            StateObject.NavMeshAgent.destination = SceneData.Instance.spawn.position;
             StateObject.NavMeshAgent.isStopped = false;
             base.Enter();
         }
 
         public override IState LogicUpdate()
-        {
-            
+        {   
             return this;
         }
 
         public override void Exit()
         {
-            StateObject.NavMeshAgent.speed = 4;
+            StateObject.NavMeshAgent.speed = 3;
             StateObject.NavMeshAgent.isStopped = true;
-            SetStatus($"Rat is finished running");
         }
     }
 }

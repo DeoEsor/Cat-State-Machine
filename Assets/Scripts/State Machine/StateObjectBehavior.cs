@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Contracts;
+using MonsterStates;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,7 +19,9 @@ namespace State_Machine
 
         public TMP_Text text;
 
-        public StateMachineType Type;
+        public int hp = 100;
+        public int lvl = 5;
+
 
         private void Awake()
         {
@@ -28,19 +31,8 @@ namespace State_Machine
 
         private void Start()
         {
-            switch (Type)
-            {
-                case StateMachineType.Cat:
-                    StateMachine = new CatStateMachine(SceneData.Instance.layerMask, this);
-                    StateMachine.Initialize(StateMachine.States["Patrol"]);
-                    break;
-                case StateMachineType.Rat:
-                    StateMachine = new RatStateMachine(this);
-                    StateMachine.Initialize(StateMachine.States["Search Cheese"]);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            StateMachine = new MonsterStateMachine(this);
+            StateMachine.Initialize(StateMachine.States[nameof(SearchPlayerState)]);
         }
 
         private void Update()
@@ -65,10 +57,10 @@ namespace State_Machine
         private IEnumerator SpawnDelay()
         {
             yield return new WaitForSeconds(2);
-            var rat = SceneData.Instance.Rat;
+            var rat = SceneData.Instance.monster;
             
             rat.StateMachine.Initialize(rat.StateMachine.States["Sleep"]);
-            rat.transform.position = SceneData.Instance.ratSpawn.position;
+            rat.transform.position = SceneData.Instance.spawn.position;
         }
     }
 }

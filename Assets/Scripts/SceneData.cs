@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DefaultNamespace;
 using State_Machine;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 
 public class SceneData : MonoBehaviour
 {
@@ -13,19 +11,11 @@ public class SceneData : MonoBehaviour
 
     public static SceneData Instance { get; set; }
 
-    public LayerMask layerMask;
+    public Player player;
 
-    public List<Transform> patrolPoints;
+    public StateObjectBehavior monster;
+
+    public Transform spawn;
     
-    public List<Transform> holes;
-
-    public Transform currentHole;
-    
-    public Transform cheese;
-    
-    public Transform ratSpawn;
-
-    public StateObjectBehavior Cat;
-
-    public StateObjectBehavior Rat;
+    public Transform food;
 }

@@ -33,10 +33,6 @@ namespace State_Machine
         public void TakeDamage()
         {
             Initialize(States["Death"]);
-            
-            var rat = SceneData.Instance.Rat;
-            
-            rat.ResetPosition();
         }
 
 
@@ -63,10 +59,16 @@ namespace State_Machine
                     SearchCheeseStateTransforms(cat, rat, searchCheeseState);
                     break;
                 case DeathState:
+                    DeathStateTransforms(rat);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void DeathStateTransforms(StateObjectBehavior rat)
+        {
+            rat.ResetPosition();
         }
 
         private void RunningStateTransforms(StateObjectBehavior cat, StateObjectBehavior rat, RunningState runningState)
@@ -80,7 +82,7 @@ namespace State_Machine
         
         private void SleepStateTransforms(StateObjectBehavior cat, StateObjectBehavior rat, SleepState sleepState)
         {
-            if (sleepState.timeSpandInState > 3f)
+            if (sleepState.timeSpandInState > 2f)
                 Initialize(States["Search Cheese"]);
             
             if (Vector3.Distance(cat.transform.position, rat.transform.position) < 5f)
